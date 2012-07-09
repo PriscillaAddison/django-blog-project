@@ -1,4 +1,3 @@
-# Create your views here.# Create your views here.
 from django.template import Context, loader
 from django.http import HttpResponse
 
@@ -10,18 +9,11 @@ def post_list(request):
     
     print type(post_list)
     print post_list
-    items=[]
-    for item in post_list:
-	items.append(item.title)
-    return HttpResponse(items)
+    
+    return HttpResponse(post_list)
 
 def post_detail(request, id, showComments=False):
-    post=Post.objects.get(pk=id)
-    if (showComments):
-	out='<h1>'+post.title+'</h1>'+'<br>'+post.body[:100]+'<br>'+post.body[100:200]
-    else:
-	out=post.title+'<br>'
-    return HttpResponse(out)
+    pass
     
 def post_search(request, term):
     pass
