@@ -3,7 +3,11 @@ Blog Project
 
 Current Instructions:
 ----------------
+<<<<<<< HEAD
 `instructions/part_3.pdf`
+=======
+`instructions/part_4.pdf`
+>>>>>>> 4ec4e1b15889e12ceea99546e778ac12d9db0839
 
 
 Hi Everyone!
