@@ -4,10 +4,14 @@ Blog Project
 Current Instructions:
 ----------------
 <<<<<<< HEAD
+<<<<<<< HEAD
 `instructions/part_3.pdf`
 =======
 `instructions/part_4.pdf`
 >>>>>>> 4ec4e1b15889e12ceea99546e778ac12d9db0839
+=======
+`instructions/part_5.pdf`
+>>>>>>> 5599e0f85475749b749137d3b598514f681f2fbc
 
 
 Hi Everyone!
