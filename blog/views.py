@@ -2,7 +2,9 @@
 from django.template import Context, loader
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-
+from django.forms import ModelForm
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect
 from models import Post, Comment 
 
 
@@ -17,20 +19,23 @@ def post_list(request):
     c=Context ({'posts':posts})
     return HttpResponse(t.render(c))
 
-def post_detail(request, id, showComments=False):
-    """post=Post.objects.get(pk=id)
-    if (showComments):
+"""class CommentForm"""
+def post_detail(request, id, showComments):
+    post=Post.objects.get(pk=id)
+    comment=""
+    if showComments != None:
+        comment=Comment.objects.filter(post=id)
+    """if (showComments):
 	out='<h1>'+post.title+'</h1>'+'<br>'+post.body
     else:
 	out=post.title+'<br>'
     return HttpResponse(out)"""
-    posts=Post.objects.all()
-    return render_to_response('blog/post_detail.html',{'post':posts, 'comments':comments})
+    
+    return render_to_response('blog/post_detail.html',{'posts':post, 'comments':comment})
     	
-
- def post_search(request, term):
+def post_search(request, term):
 	posts=Post.objects.filter(title__contains=term)
-	return render_to_response('blog/post_search.html',{'post':posts, 'term':term})
+	return render_to_response('blog/post_search.html',{'posts':post, 'term':term})
 	
 
 def home(request):

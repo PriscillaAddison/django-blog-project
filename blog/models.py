@@ -18,7 +18,7 @@ class Comment(models.Model):
 	author=models.CharField(max_length=60)
 	date_created=models.DateField()
 	date_updated=models.DateField()
-	post=models.ForeignKey(Post)
+	post=models.ForeignKey(Post ,related_name="comments")
 	def __unicode__(self):
 		return self.author
 
