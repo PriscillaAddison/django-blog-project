@@ -1,0 +1,12 @@
+{%extends 'blog/base.html'%}
+{%block content%}
+
+<h6> Edit comment here:</h6>
+<div>
+    <form method='post' action="">
+	{{ form.as_p }}
+	<input type='submit' name='Submit'>
+    </form>
+</div>
+
+{%endblock%}

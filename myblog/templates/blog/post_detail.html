@@ -6,17 +6,17 @@
 <li>{{posts.body}}</li>
   {% for c in comments %}
 
+	<p>Author: {{c.author}}</p>
+	<p>Body: {{c.body}}</p>  		
+<div>
+	<a href='/blog/comments/{{c.id}}/edit'>
+	     Edit Comment 
+	</a>		
 	
-   		<p>Author: {{c.author}}</p>
-		<p>Body: {{c.body}}</p>  		
-		
-	
-
+</div>
 {%  endfor%}
 </ul>
-{%endblock%}
 
-<!--
 <h5>New comment:</h5>
 <div>
     <form method='post' action="">
@@ -24,4 +24,6 @@
 	<input type='submit' name='Submit'>
     </form>
 </div>
--->
+
+{%endblock%}
+

@@ -19,9 +19,23 @@ def post_list(request):
     c=Context ({'posts':posts})
     return HttpResponse(t.render(c))
 
-"""class CommentForm"""
+class CommentForm(ModelForm):
+   class Meta:
+      model = Comment
+      exclude = ['post']
+
+@csrf_exempt
 def post_detail(request, id, showComments):
     post=Post.objects.get(pk=id)
+    if request.method == 'POST':
+        comment = Comment(post=post)	
+        form = CommentForm(request.POST, instance = comment)
+        if form.is_valid():
+           form.save()
+        return HttpResponseRedirect(request.path)
+    else:
+      form = CommentForm()
+	
     comment=""
     if showComments != None:
         comment=Comment.objects.filter(post=id)
@@ -31,7 +45,19 @@ def post_detail(request, id, showComments):
 	out=post.title+'<br>'
     return HttpResponse(out)"""
     
-    return render_to_response('blog/post_detail.html',{'posts':post, 'comments':comment})
+    return render_to_response('blog/post_detail.html',{'posts':post, 'comments':comment, 'form':  form})
+
+@csrf_exempt
+def edit_comment(request, id,):
+    post=Post.objects.get(pk=id)
+    if request.method == 'POST':	
+        form = CommentForm(request.POST, instance = post)
+        if form.is_valid():
+           form.save()
+        return HttpResponseRedirect(request.path)
+    else:
+      form = CommentForm()
+    return render_to_response('blog/edit_comment.html',{'editcomment':post , 'form':form})
     	
 def post_search(request, term):
 	posts=Post.objects.filter(title__contains=term)
